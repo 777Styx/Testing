@@ -1,0 +1,14 @@
+persistencia\persistenciaEscuela\IUsuarioDAO.class
+persistencia\conexionBD\ConexionEscuela.class
+persistencia\conexionBD\ConexionMongo.class
+persistencia\persistenciaSistema\ReportesDAO.class
+persistencia\persistenciaSistema\IReportesDAO.class
+persistencia\entidades\UsuarioEntity.class
+persistencia\persistenciaEscuela\IAlumnoDAO.class
+persistencia\persistenciaEscuela\UsuarioDAO.class
+persistencia\pruebas\Pruebas.class
+persistencia\entidades\NivelIncidenciaPersistencia.class
+persistencia\entidades\ReporteEntity.class
+persistencia\persistenciaEscuela\AlumnoDAO.class
+persistencia\excepciones\PersistenciaException.class
+persistencia\entidades\AlumnoEntity.class
