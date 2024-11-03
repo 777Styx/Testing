@@ -1,0 +1,4 @@
+fachada\FachadaGestionarIncidencias.class
+excepciones\SubsistemaException.class
+fachada\IFachadaGestionarIncidencias.class
+control\GestionarIncidencias.class
