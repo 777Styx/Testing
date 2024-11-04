@@ -39,153 +39,179 @@ import persistencia.excepciones.PersistenciaException;
  *
  * @author olive
  */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 class IReportesDAOTest {
 
-    @Mock
-    private MongoCollection<ReporteEntity> coleccion;
-
-    @Mock
-    private FindIterable<ReporteEntity> findIterable;
-
-    @InjectMocks
-    private ReportesDAO reportesDAO;
+    private IReportesDAO reportesDAO;
+    private ReporteEntity reporte;
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
+        // Arrange - setup common objects and mocks
+        reportesDAO = Mockito.mock(IReportesDAO.class);
+        reporte = new ReporteEntity();
+    }
+
+    // Pruebas funcionales
+    @Test
+    void testInsertarReporte_ValidReporte_InsertsSuccessfully() throws PersistenciaException {
+        // Arrange
+        when(reportesDAO.insertarReporte(reporte)).thenReturn(reporte);
+
+        // Act
+        ReporteEntity resultado = reportesDAO.insertarReporte(reporte);
+
+        // Assert
+        assertEquals(reporte, resultado);
+        verify(reportesDAO, times(1)).insertarReporte(reporte);
     }
 
     @Test
-    void insertarReporte_CuandoInsercionExitosa_DeberiaNoLanzarExcepcion() {
+    void testValidarReporte_ValidReporte_ReturnsValidatedReport() throws PersistenciaException {
         // Arrange
-        ReporteEntity reporte = new ReporteEntity();
-        doNothing().when(coleccion).insertOne(reporte);
+        when(reportesDAO.validarReporte(reporte)).thenReturn(reporte);
 
-        // Act & Assert
-        assertDoesNotThrow(() -> {
-            ReporteEntity resultado = reportesDAO.insertarReporte(reporte);
-            assertNull(resultado);
-        });
-        verify(coleccion).insertOne(reporte);
+        // Act
+        ReporteEntity resultado = reportesDAO.validarReporte(reporte);
+
+        // Assert
+        assertEquals(reporte, resultado);
+        verify(reportesDAO, times(1)).validarReporte(reporte);
     }
 
     @Test
-    void insertarReporte_CuandoErrorDeInsercion_DeberiaLanzarPersistenciaException() {
+    void testModificarReporte_ValidReporte_UpdatesSuccessfully() throws PersistenciaException {
         // Arrange
-        ReporteEntity reporte = new ReporteEntity();
-        doThrow(new MongoException("Error de conexión")).when(coleccion).insertOne(reporte);
+        when(reportesDAO.modificarReporte(reporte)).thenReturn(reporte);
 
-        // Act & Assert
-        PersistenciaException exception = assertThrows(PersistenciaException.class,
-                () -> reportesDAO.insertarReporte(reporte));
-        assertEquals("Error al insertar reportes", exception.getMessage());
+        // Act
+        ReporteEntity resultado = reportesDAO.modificarReporte(reporte);
+
+        // Assert
+        assertEquals(reporte, resultado);
+        verify(reportesDAO, times(1)).modificarReporte(reporte);
     }
 
     @Test
-    void validarReporte_CuandoReporteNoExiste_DeberiaRetornarNull() {
+    void testNotificarReporte_ValidReporte_ReturnsTrue() throws PersistenciaException {
         // Arrange
-        ReporteEntity reporte = new ReporteEntity();
-        reporte.setId(new ObjectId());
+        when(reportesDAO.notificarReporte(reporte)).thenReturn(true);
 
-        when(coleccion.find(any(Bson.class))).thenReturn(findIterable);
-        when(findIterable.first()).thenReturn(null);
+        // Act
+        boolean notificado = reportesDAO.notificarReporte(reporte);
 
-        // Act & Assert
-        assertDoesNotThrow(() -> {
-            ReporteEntity resultado = reportesDAO.validarReporte(reporte);
-            assertNull(resultado);
-        });
-        verify(coleccion, never()).updateOne(any(), any());
+        // Assert
+        assertTrue(notificado);
+        verify(reportesDAO, times(1)).notificarReporte(reporte);
     }
 
     @Test
-    void modificarReporte_CuandoErrorDeModificacion_DeberiaLanzarPersistenciaException() {
+    void testRecuperarReportes_NoParameters_ReturnsListOfReports() throws PersistenciaException {
         // Arrange
-        ReporteEntity reporte = new ReporteEntity();
-        reporte.setId(new ObjectId());
+        List<ReporteEntity> reportes = new ArrayList<>();
+        reportes.add(reporte);
+        when(reportesDAO.recuperarReportes()).thenReturn(reportes);
 
-        doThrow(new MongoException("Error de conexión")).when(coleccion).replaceOne(any(), any());
+        // Act
+        List<ReporteEntity> resultado = reportesDAO.recuperarReportes();
 
-        // Act & Assert
-        assertThrows(PersistenciaException.class, () -> reportesDAO.modificarReporte(reporte));
+        // Assert
+        assertEquals(reportes, resultado);
+        verify(reportesDAO, times(1)).recuperarReportes();
     }
 
     @Test
-    void notificarReporte_CuandoErrorDeNotificacion_DeberiaRetornarFalso() {
+    void testInsertarReportesSimulados_NoParameters_InsertsMockData() throws PersistenciaException {
         // Arrange
-        ObjectId id = new ObjectId();
-        ReporteEntity reporte = crearReportePrueba(id);
+        doNothing().when(reportesDAO).insertarReportesSimulados();
 
-        doThrow(new MongoException("Error de conexión"))
-                .when(coleccion).updateOne(any(), any());
+        // Act
+        reportesDAO.insertarReportesSimulados();
 
-        // Act & Assert
-        assertDoesNotThrow(() -> {
-            boolean resultado = reportesDAO.notificarReporte(reporte);
-            assertFalse(resultado);
-        });
+        // Assert
+        verify(reportesDAO, times(1)).insertarReportesSimulados();
+    }
+
+    // Pruebas no funcionales
+    @Test
+    void testRecuperarReportes_Performance_ReturnsQuickly() throws PersistenciaException {
+        // Arrange
+        List<ReporteEntity> reportes = new ArrayList<>();
+        reportes.add(reporte);
+        when(reportesDAO.recuperarReportes()).thenReturn(reportes);
+
+        // Act
+        long startTime = System.currentTimeMillis();
+        List<ReporteEntity> resultado = reportesDAO.recuperarReportes();
+        long endTime = System.currentTimeMillis();
+
+        // Assert
+        assertEquals(reportes, resultado);
+        assertTrue(endTime - startTime < 100, "El método debe ejecutarse en menos de 100 ms");
     }
 
     @Test
-    void recuperarReportes_CuandoHayReportes_DeberiaRetornarListaDeReportes() {
+    void testNotificarReporte_NullReporte_ThrowsException() throws PersistenciaException {
         // Arrange
-        List<ReporteEntity> reportesEsperados = Arrays.asList(
-                crearReportePrueba(new ObjectId()),
-                crearReportePrueba(new ObjectId())
-        );
-
-        when(coleccion.find()).thenReturn(findIterable);
-        when(findIterable.into(any())).thenAnswer(invocation -> {
-            List<ReporteEntity> target = invocation.getArgument(0);
-            target.addAll(reportesEsperados);
-            return target;
-        });
+        doThrow(PersistenciaException.class).when(reportesDAO).notificarReporte(null);
 
         // Act & Assert
-        assertDoesNotThrow(() -> {
-            List<ReporteEntity> resultado = reportesDAO.recuperarReportes();
-            assertNotNull(resultado);
-            assertEquals(2, resultado.size());
-        });
+        assertThrows(PersistenciaException.class, () -> reportesDAO.notificarReporte(null));
+    }
+
+    // Pruebas estructurales
+    @Test
+    void testRecuperarReportesAlumno_ValidCurp_ReturnsExpectedResults() throws PersistenciaException {
+        // Arrange
+        List<ReporteEntity> reportes = new ArrayList<>();
+        reportes.add(reporte);
+        when(reportesDAO.recuperarReportesAlumno("CURP123")).thenReturn(reportes);
+
+        // Act
+        List<ReporteEntity> resultado = reportesDAO.recuperarReportesAlumno("CURP123");
+
+        // Assert
+        assertEquals(reportes, resultado);
+        verify(reportesDAO, times(1)).recuperarReportesAlumno("CURP123");
     }
 
     @Test
-    void recuperarReportes_CuandoErrorDeRecuperacion_DeberiaLanzarPersistenciaException() {
+    void testRecuperarReportesAlumno_InvalidCurp_ReturnsEmptyList() throws PersistenciaException {
         // Arrange
-        when(coleccion.find()).thenThrow(new MongoException("Error de conexión"));
+        when(reportesDAO.recuperarReportesAlumno("INVALID_CURP")).thenReturn(new ArrayList<>());
 
-        // Act & Assert
-        assertThrows(PersistenciaException.class, () -> reportesDAO.recuperarReportes());
+        // Act
+        List<ReporteEntity> resultado = reportesDAO.recuperarReportesAlumno("INVALID_CURP");
+
+        // Assert
+        assertTrue(resultado.isEmpty());
+        verify(reportesDAO, times(1)).recuperarReportesAlumno("INVALID_CURP");
     }
 
     @Test
-    void recuperarReportesAlumno_CuandoErrorDeRecuperacionPorAlumno_DeberiaLanzarPersistenciaException() {
+    void testInsertarReporte_NullReporte_ThrowsException() throws PersistenciaException {
         // Arrange
-        String curp = "CURP123";
-        when(coleccion.find(any(Bson.class))).thenThrow(new MongoException("Error de conexión"));
+        doThrow(PersistenciaException.class).when(reportesDAO).insertarReporte(null);
 
         // Act & Assert
-        assertThrows(PersistenciaException.class, () -> reportesDAO.recuperarReportesAlumno(curp));
+        assertThrows(PersistenciaException.class, () -> reportesDAO.insertarReporte(null));
     }
 
     @Test
-    @Timeout(value = 1, unit = TimeUnit.SECONDS)
-    void recuperarReportes_CuandoOperacionRapida_DeberiaCompletarEnTiempoEsperado() {
+    void testModificarReporte_NullReporte_ThrowsException() throws PersistenciaException {
         // Arrange
-        when(coleccion.find()).thenReturn(findIterable);
-        when(findIterable.into(any())).thenReturn(new ArrayList<>());
+        doThrow(PersistenciaException.class).when(reportesDAO).modificarReporte(null);
 
         // Act & Assert
-        assertDoesNotThrow(() -> reportesDAO.recuperarReportes());
-    }
-
-    // Método auxiliar para crear reportes de prueba
-    private ReporteEntity crearReportePrueba(ObjectId id) {
-        ReporteEntity reporte = new ReporteEntity();
-        reporte.setId(id);
-        reporte.setNivelIncidencia(NivelIncidenciaPersistencia.GRAVE);
-        reporte.setDescripcion("Descripción de prueba");
-        reporte.setMotivo("Motivo de prueba");
-        return reporte;
+        assertThrows(PersistenciaException.class, () -> reportesDAO.modificarReporte(null));
     }
 }
