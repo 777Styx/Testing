@@ -4,6 +4,8 @@
  */
 package presentacion.main;
 
+import negocios.bo.IncidenciasBO;
+import negocios.excepciones.NegociosException;
 import presentacion.iniciarsesion.FrmIniciarSesion;
 
 /**
@@ -15,9 +17,12 @@ public class ReportePresentacionMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NegociosException {
+        IncidenciasBO bo = new IncidenciasBO();
+
+        bo.insertDatosSimulados();
         FrmIniciarSesion frmIniciarSesion = new FrmIniciarSesion();
         frmIniciarSesion.setVisible(true);
     }
-    
+
 }
