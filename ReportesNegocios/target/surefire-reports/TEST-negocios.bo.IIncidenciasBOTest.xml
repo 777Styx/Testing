@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="negocios.bo.IIncidenciasBOTest" time="0.94" tests="11" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="negocios.bo.IIncidenciasBOTest" time="1.225" tests="13" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="MX"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-22\bin"/>
-    <property name="sun.java.command" value="C:\Users\olive\AppData\Local\Temp\surefire6870352836239685599\surefirebooter-20241103200755487_3.jar C:\Users\olive\AppData\Local\Temp\surefire6870352836239685599 2024-11-03T20-07-55_362-jvmRun1 surefire-20241103200755487_1tmp surefire_0-20241103200755487_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\olive\AppData\Local\Temp\surefire2248698001089840583\surefirebooter-20241103202406970_3.jar C:\Users\olive\AppData\Local\Temp\surefire2248698001089840583 2024-11-03T20-24-06_856-jvmRun1 surefire-20241103202406970_1tmp surefire_0-20241103202406970_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="negocios.bo.IIncidenciasBOTest"/>
     <property name="surefire.test.class.path" value="C:\Users\olive\OneDrive\Documentos\GitHub\Testing\ReportesNegocios\target\test-classes;C:\Users\olive\OneDrive\Documentos\GitHub\Testing\ReportesNegocios\target\classes;C:\Users\olive\.m2\repository\org\itson\bdavanzadas\SistemaMensajeria\1.0-SNAPSHOT\SistemaMensajeria-1.0-SNAPSHOT.jar;C:\Users\olive\.m2\repository\javax\mail\javax.mail-api\1.6.2\javax.mail-api-1.6.2.jar;C:\Users\olive\.m2\repository\com\sun\mail\javax.mail\1.6.2\javax.mail-1.6.2.jar;C:\Users\olive\.m2\repository\javax\activation\activation\1.1\activation-1.1.jar;C:\Users\olive\.m2\repository\org\itson\bdavanzadas\ReportesDTO\1.0-SNAPSHOT\ReportesDTO-1.0-SNAPSHOT.jar;C:\Users\olive\.m2\repository\org\itson\bdavanzadas\ReportesPersistencia\1.0-SNAPSHOT\ReportesPersistencia-1.0-SNAPSHOT.jar;C:\Users\olive\.m2\repository\org\mongodb\mongo-java-driver\3.10.2\mongo-java-driver-3.10.2.jar;C:\Users\olive\.m2\repository\org\mongodb\bson\3.10.2\bson-3.10.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\olive\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\olive\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\olive\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\olive\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\olive\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\olive\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\olive\.m2\repository\org\mockito\mockito-core\5.4.0\mockito-core-5.4.0.jar;C:\Users\olive\.m2\repository\net\bytebuddy\byte-buddy\1.14.5\byte-buddy-1.14.5.jar;C:\Users\olive\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.5\byte-buddy-agent-1.14.5.jar;C:\Users\olive\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter\5.8.2\junit-jupiter-5.8.2.jar;C:\Users\olive\.m2\repository\org\mockito\mockito-junit-jupiter\5.3.1\mockito-junit-jupiter-5.3.1.jar;"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\olive\AppData\Local\Temp\surefire6870352836239685599\surefirebooter-20241103200755487_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\olive\AppData\Local\Temp\surefire2248698001089840583\surefirebooter-20241103202406970_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="22.0.2+9-70"/>
@@ -60,21 +60,23 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="testRecuperarAlumnosPorGrado_Performance_ReturnsQuickly" classname="negocios.bo.IIncidenciasBOTest" time="0.876">
+  <testcase name="testRecuperarAlumnosPorGrado_Performance_ReturnsQuickly" classname="negocios.bo.IIncidenciasBOTest" time="1.159">
     <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\olive\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.5\byte-buddy-agent-1.14.5.jar)
 WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
 WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
 WARNING: Dynamic loading of agents will be disallowed by default in a future release
 ]]></system-err>
   </testcase>
-  <testcase name="testRecuperarReportesAlumno_InvalidCurp_ReturnsEmptyList" classname="negocios.bo.IIncidenciasBOTest" time="0.011"/>
+  <testcase name="testRecuperarReportesAlumno_InvalidCurp_ReturnsEmptyList" classname="negocios.bo.IIncidenciasBOTest" time="0.01"/>
+  <testcase name="testCrearReporte_ReportInvalido_ThrowsException" classname="negocios.bo.IIncidenciasBOTest" time="0.01"/>
   <testcase name="testConvertirReporteAReporteExpediente_ValidReportList_ReturnsExpectedExpedienteList" classname="negocios.bo.IIncidenciasBOTest" time="0.002"/>
-  <testcase name="testNotificarReporte_NullReport_ThrowsException" classname="negocios.bo.IIncidenciasBOTest" time="0.007"/>
-  <testcase name="testCrearReporte_ValidInput_CreatesReportSuccessfully" classname="negocios.bo.IIncidenciasBOTest" time="0.003"/>
-  <testcase name="testInsertDatosSimulados_NoParameters_InsertsMockData" classname="negocios.bo.IIncidenciasBOTest" time="0.003"/>
+  <testcase name="testNotificarReporte_NullReport_ThrowsException" classname="negocios.bo.IIncidenciasBOTest" time="0.002"/>
+  <testcase name="testCrearReporte_ValidInput_CreatesReportSuccessfully" classname="negocios.bo.IIncidenciasBOTest" time="0.002"/>
+  <testcase name="testRecuperarReportes_AlumnoNoExiste_ReturnsEmptyList" classname="negocios.bo.IIncidenciasBOTest" time="0.003"/>
+  <testcase name="testInsertDatosSimulados_NoParameters_InsertsMockData" classname="negocios.bo.IIncidenciasBOTest" time="0.002"/>
   <testcase name="testNotificarReporte_ValidReport_ReturnsTrue" classname="negocios.bo.IIncidenciasBOTest" time="0.002"/>
   <testcase name="testRecuperarReportesAlumno_ValidCurp_ReturnsReports" classname="negocios.bo.IIncidenciasBOTest" time="0.001"/>
   <testcase name="testRecuperarAlumnosPorGradoYGrupo_ValidInput_ReturnsExpectedResults" classname="negocios.bo.IIncidenciasBOTest" time="0.001"/>
-  <testcase name="testValidarReporte_ValidReport_ReturnsValidatedReport" classname="negocios.bo.IIncidenciasBOTest" time="0.003"/>
+  <testcase name="testValidarReporte_ValidReport_ReturnsValidatedReport" classname="negocios.bo.IIncidenciasBOTest" time="0.001"/>
   <testcase name="testRecuperarReportes_NoParameters_ReturnsListOfReports" classname="negocios.bo.IIncidenciasBOTest" time="0.001"/>
 </testsuite>

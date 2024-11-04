@@ -59,6 +59,16 @@ class IIncidenciasBOTest {
     }
 
     @Test
+    void testCrearReporte_ReportInvalido_ThrowsException() throws NegociosException {
+        // Arrange
+        ReporteDTO reporteInvalido = new ReporteDTO("ID2", null, null, null, "Descripcion", "Motivo", new Date(), false, false);
+        doThrow(NegociosException.class).when(incidenciasBO).crearReporte(reporteInvalido);
+
+        // Act & Assert
+        assertThrows(NegociosException.class, () -> incidenciasBO.crearReporte(reporteInvalido));
+    }
+
+    @Test
     void testValidarReporte_ValidReport_ReturnsValidatedReport() throws NegociosException {
         // Arrange
         when(incidenciasBO.validarReporte(reporte)).thenReturn(reporte);
@@ -138,6 +148,7 @@ class IIncidenciasBOTest {
         assertThrows(NegociosException.class, () -> incidenciasBO.notificarReporte(null));
     }
 
+    
     // Pruebas estructurales
     @Test
     void testRecuperarAlumnosPorGradoYGrupo_ValidInput_ReturnsExpectedResults() throws NegociosException {
@@ -196,5 +207,18 @@ class IIncidenciasBOTest {
         // Assert
         assertEquals(reportes, resultado);
         verify(incidenciasBO, times(1)).recuperarReportesAlumno("CURP123");
+    }
+    
+    @Test
+    void testRecuperarReportes_AlumnoNoExiste_ReturnsEmptyList() throws NegociosException {
+        // Arrange
+        when(incidenciasBO.recuperarReportesAlumno("NO_CURP")).thenReturn(new ArrayList<>());
+
+        // Act
+        List<ReporteDTO> resultado = incidenciasBO.recuperarReportesAlumno("NO_CURP");
+
+        // Assert
+        assertTrue(resultado.isEmpty());
+        verify(incidenciasBO, times(1)).recuperarReportesAlumno("NO_CURP");
     }
 }
