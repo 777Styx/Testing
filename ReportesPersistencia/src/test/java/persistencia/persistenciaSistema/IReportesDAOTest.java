@@ -40,28 +40,27 @@ import persistencia.excepciones.PersistenciaException;
  * @author olive
  */
 class IReportesDAOTest {
-    
+
     @Mock
     private MongoCollection<ReporteEntity> coleccion;
-    
+
     @Mock
     private FindIterable<ReporteEntity> findIterable;
-    
+
     @InjectMocks
     private ReportesDAO reportesDAO;
-    
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
-    // Pruebas para insertarReporte
     @Test
-    void deberiaInsertarReporteExitosamente() {
+    void insertarReporte_CuandoInsercionExitosa_DeberiaNoLanzarExcepcion() {
         // Arrange
         ReporteEntity reporte = new ReporteEntity();
         doNothing().when(coleccion).insertOne(reporte);
-        
+
         // Act & Assert
         assertDoesNotThrow(() -> {
             ReporteEntity resultado = reportesDAO.insertarReporte(reporte);
@@ -69,28 +68,28 @@ class IReportesDAOTest {
         });
         verify(coleccion).insertOne(reporte);
     }
-    
+
     @Test
-    void deberiaLanzarExcepcionCuandoHayErrorDeInsercion() {
+    void insertarReporte_CuandoErrorDeInsercion_DeberiaLanzarPersistenciaException() {
         // Arrange
         ReporteEntity reporte = new ReporteEntity();
         doThrow(new MongoException("Error de conexión")).when(coleccion).insertOne(reporte);
-        
+
         // Act & Assert
-        PersistenciaException exception = assertThrows(PersistenciaException.class, 
-            () -> reportesDAO.insertarReporte(reporte));
+        PersistenciaException exception = assertThrows(PersistenciaException.class,
+                () -> reportesDAO.insertarReporte(reporte));
         assertEquals("Error al insertar reportes", exception.getMessage());
     }
-    
+
     @Test
-    void deberiaRetornarNullCuandoReporteNoExiste() {
+    void validarReporte_CuandoReporteNoExiste_DeberiaRetornarNull() {
         // Arrange
         ReporteEntity reporte = new ReporteEntity();
         reporte.setId(new ObjectId());
-        
+
         when(coleccion.find(any(Bson.class))).thenReturn(findIterable);
         when(findIterable.first()).thenReturn(null);
-        
+
         // Act & Assert
         assertDoesNotThrow(() -> {
             ReporteEntity resultado = reportesDAO.validarReporte(reporte);
@@ -98,28 +97,28 @@ class IReportesDAOTest {
         });
         verify(coleccion, never()).updateOne(any(), any());
     }
-    
+
     @Test
-    void deberiaLanzarExcepcionCuandoHayErrorDeModificacion() {
+    void modificarReporte_CuandoErrorDeModificacion_DeberiaLanzarPersistenciaException() {
         // Arrange
         ReporteEntity reporte = new ReporteEntity();
         reporte.setId(new ObjectId());
-        
+
         doThrow(new MongoException("Error de conexión")).when(coleccion).replaceOne(any(), any());
-        
+
         // Act & Assert
         assertThrows(PersistenciaException.class, () -> reportesDAO.modificarReporte(reporte));
     }
-    
+
     @Test
-    void deberiaRetornarFalsoCuandoHayErrorDeNotificacion() {
+    void notificarReporte_CuandoErrorDeNotificacion_DeberiaRetornarFalso() {
         // Arrange
         ObjectId id = new ObjectId();
         ReporteEntity reporte = crearReportePrueba(id);
-        
+
         doThrow(new MongoException("Error de conexión"))
-            .when(coleccion).updateOne(any(), any());
-        
+                .when(coleccion).updateOne(any(), any());
+
         // Act & Assert
         assertDoesNotThrow(() -> {
             boolean resultado = reportesDAO.notificarReporte(reporte);
@@ -127,22 +126,21 @@ class IReportesDAOTest {
         });
     }
 
-    // Pruebas para recuperarReportes
     @Test
-    void deberiaRecuperarTodosLosReportes() {
+    void recuperarReportes_CuandoHayReportes_DeberiaRetornarListaDeReportes() {
         // Arrange
         List<ReporteEntity> reportesEsperados = Arrays.asList(
-            crearReportePrueba(new ObjectId()),
-            crearReportePrueba(new ObjectId())
+                crearReportePrueba(new ObjectId()),
+                crearReportePrueba(new ObjectId())
         );
-        
+
         when(coleccion.find()).thenReturn(findIterable);
         when(findIterable.into(any())).thenAnswer(invocation -> {
             List<ReporteEntity> target = invocation.getArgument(0);
             target.addAll(reportesEsperados);
             return target;
         });
-        
+
         // Act & Assert
         assertDoesNotThrow(() -> {
             List<ReporteEntity> resultado = reportesDAO.recuperarReportes();
@@ -150,34 +148,33 @@ class IReportesDAOTest {
             assertEquals(2, resultado.size());
         });
     }
-    
+
     @Test
-    void deberiaLanzarExcepcionCuandoHayErrorDeRecuperacion() {
+    void recuperarReportes_CuandoErrorDeRecuperacion_DeberiaLanzarPersistenciaException() {
         // Arrange
         when(coleccion.find()).thenThrow(new MongoException("Error de conexión"));
-        
+
         // Act & Assert
         assertThrows(PersistenciaException.class, () -> reportesDAO.recuperarReportes());
     }
-    
+
     @Test
-    void deberiaLanzarExcepcionCuandoHayErrorDeRecuperacionPorAlumno() {
+    void recuperarReportesAlumno_CuandoErrorDeRecuperacionPorAlumno_DeberiaLanzarPersistenciaException() {
         // Arrange
         String curp = "CURP123";
         when(coleccion.find(any(Bson.class))).thenThrow(new MongoException("Error de conexión"));
-        
+
         // Act & Assert
         assertThrows(PersistenciaException.class, () -> reportesDAO.recuperarReportesAlumno(curp));
     }
 
-    // Pruebas no funcionales
     @Test
     @Timeout(value = 1, unit = TimeUnit.SECONDS)
-    void deberiaCompletarOperacionEnTiempoEsperado() {
+    void recuperarReportes_CuandoOperacionRapida_DeberiaCompletarEnTiempoEsperado() {
         // Arrange
         when(coleccion.find()).thenReturn(findIterable);
         when(findIterable.into(any())).thenReturn(new ArrayList<>());
-        
+
         // Act & Assert
         assertDoesNotThrow(() -> reportesDAO.recuperarReportes());
     }
