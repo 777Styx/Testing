@@ -1,0 +1,74 @@
+-------------------------------------------------------------------------------
+Test set: persistencia.persistenciaSistema.ReportesDAOTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 1.464 s <<< FAILURE! -- in persistencia.persistenciaSistema.ReportesDAOTest
+persistencia.persistenciaSistema.ReportesDAOTest.deberiaModificarReporteExitosamente -- Time elapsed: 0.007 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.NullPointerException: Cannot invoke "com.mongodb.client.FindIterable.first()" because the return value of "com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)" is null
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:84)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:53)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:36)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3168)
+	at persistencia.persistenciaSistema.ReportesDAOTest.deberiaModificarReporteExitosamente(ReportesDAOTest.java:122)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.mongodb.client.FindIterable.first()" because the return value of "com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)" is null
+	at persistencia.persistenciaSistema.ReportesDAO.modificarReporte(ReportesDAO.java:88)
+	at persistencia.persistenciaSistema.ReportesDAOTest.lambda$deberiaModificarReporteExitosamente$4(ReportesDAOTest.java:123)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
+	... 6 more
+
+persistencia.persistenciaSistema.ReportesDAOTest.deberiaValidarReporteExistente -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.NullPointerException: Cannot invoke "com.mongodb.client.FindIterable.first()" because the return value of "com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)" is null
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:84)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:53)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:36)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3168)
+	at persistencia.persistenciaSistema.ReportesDAOTest.deberiaValidarReporteExistente(ReportesDAOTest.java:86)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.mongodb.client.FindIterable.first()" because the return value of "com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)" is null
+	at persistencia.persistenciaSistema.ReportesDAO.validarReporte(ReportesDAO.java:63)
+	at persistencia.persistenciaSistema.ReportesDAOTest.lambda$deberiaValidarReporteExistente$2(ReportesDAOTest.java:87)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
+	... 6 more
+
+persistencia.persistenciaSistema.ReportesDAOTest.deberiaNotificarReporteExitosamente -- Time elapsed: 0.017 s <<< FAILURE!
+Argument(s) are different! Wanted:
+coleccion.updateOne(
+    Filter{fieldName='_id', value=67281bb1a646934670c64910},
+    Update{fieldName='notificado', operator='$set', value=true}
+);
+-> at persistencia.persistenciaSistema.ReportesDAOTest.deberiaNotificarReporteExitosamente(ReportesDAOTest.java:157)
+Actual invocations have different arguments at positions [0, 1]:
+coleccion.updateOne(
+    Filter{fieldName='_id', value=67281bb1a646934670c64910},
+    Update{fieldName='notificado', operator='$set', value=true}
+);
+-> at persistencia.persistenciaSistema.ReportesDAO.notificarReporte(ReportesDAO.java:94)
+
+	at persistencia.persistenciaSistema.ReportesDAOTest.deberiaNotificarReporteExitosamente(ReportesDAOTest.java:157)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+persistencia.persistenciaSistema.ReportesDAOTest.deberiaRecuperarReportesPorAlumno -- Time elapsed: 0.003 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Unexpected exception thrown: persistencia.excepciones.PersistenciaException: Hubo un error al recuperar reportes
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:84)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:53)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:36)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3168)
+	at persistencia.persistenciaSistema.ReportesDAOTest.deberiaRecuperarReportesPorAlumno(ReportesDAOTest.java:221)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: persistencia.excepciones.PersistenciaException: Hubo un error al recuperar reportes
+	at persistencia.persistenciaSistema.ReportesDAO.recuperarReportesAlumno(ReportesDAO.java:117)
+	at persistencia.persistenciaSistema.ReportesDAOTest.lambda$deberiaRecuperarReportesPorAlumno$10(ReportesDAOTest.java:222)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
+	... 6 more
+

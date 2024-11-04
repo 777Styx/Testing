@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="persistencia.persistenciaSistema.ReportesDAOTest" time="1.464" tests="13" errors="0" skipped="0" failures="4">
+  <properties>
+    <property name="java.specification.version" value="21"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\olive\OneDrive\Documentos\GitHub\Testing\ReportesPersistencia\target\test-classes;C:\Users\olive\OneDrive\Documentos\GitHub\Testing\ReportesPersistencia\target\classes;C:\Users\olive\.m2\repository\org\mongodb\mongo-java-driver\3.10.2\mongo-java-driver-3.10.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\olive\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\olive\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\olive\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\olive\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\olive\.m2\repository\org\mockito\mockito-core\5.4.0\mockito-core-5.4.0.jar;C:\Users\olive\.m2\repository\net\bytebuddy\byte-buddy\1.14.5\byte-buddy-1.14.5.jar;C:\Users\olive\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.5\byte-buddy-agent-1.14.5.jar;C:\Users\olive\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\olive\.m2\repository\org\mongodb\bson\3.10.2\bson-3.10.2.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Mazatlan"/>
+    <property name="os.name" value="Windows 11"/>
+    <property name="java.vm.specification.version" value="21"/>
+    <property name="user.country" value="MX"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
+    <property name="sun.java.command" value="C:\Users\olive\AppData\Local\Temp\surefire13372842589151481597\surefirebooter-20241103175615239_3.jar C:\Users\olive\AppData\Local\Temp\surefire13372842589151481597 2024-11-03T17-56-15_137-jvmRun1 surefire-20241103175615239_1tmp surefire_0-20241103175615239_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="test" value="persistencia.persistenciaSistema.ReportesDAOTest"/>
+    <property name="surefire.test.class.path" value="C:\Users\olive\OneDrive\Documentos\GitHub\Testing\ReportesPersistencia\target\test-classes;C:\Users\olive\OneDrive\Documentos\GitHub\Testing\ReportesPersistencia\target\classes;C:\Users\olive\.m2\repository\org\mongodb\mongo-java-driver\3.10.2\mongo-java-driver-3.10.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\olive\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\olive\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\olive\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\olive\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\olive\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\olive\.m2\repository\org\mockito\mockito-core\5.4.0\mockito-core-5.4.0.jar;C:\Users\olive\.m2\repository\net\bytebuddy\byte-buddy\1.14.5\byte-buddy-1.14.5.jar;C:\Users\olive\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.5\byte-buddy-agent-1.14.5.jar;C:\Users\olive\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;C:\Users\olive\.m2\repository\org\mongodb\bson\3.10.2\bson-3.10.2.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\olive"/>
+    <property name="user.language" value="es"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2024-04-16"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-21"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\olive\OneDrive\Documentos\GitHub\Testing\ReportesPersistencia"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\olive\AppData\Local\Temp\surefire13372842589151481597\surefirebooter-20241103175615239_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="21.0.3+7-LTS-152"/>
+    <property name="user.name" value="olive"/>
+    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-22\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="localRepository" value="C:\Users\olive\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\olive\AppData\Local\Temp\"/>
+    <property name="java.version" value="21.0.3"/>
+    <property name="user.dir" value="C:\Users\olive\OneDrive\Documentos\GitHub\Testing\ReportesPersistencia"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-21\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Python312\Scripts\;C:\Python312\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\ProgramData\chocolatey\bin;C:\Program Files\Git\cmd;C:\Program Files\Apache\maven\apache-maven-3.9.9\bin;C:\Program Files\Microsoft SQL Server\150\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\nodejs\;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\olive\AppData\Local\Microsoft\WindowsApps;C:\Users\olive\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\olive\AppData\Local\GitHubDesktop\bin;C:\Users\olive\.dotnet\tools;C:\Users\olive\AppData\Roaming\npm;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="stderr.encoding" value="Cp1252"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="21.0.3+7-LTS-152"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="65.0"/>
+  </properties>
+  <testcase name="deberiaRetornarFalsoCuandoHayErrorDeNotificacion" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="1.318">
+    <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (C:\Users\olive\.m2\repository\net\bytebuddy\byte-buddy-agent\1.14.5\byte-buddy-agent-1.14.5.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+nov 03, 2024 5:56:16 P. M. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+nov 03, 2024 5:56:17 P. M. persistencia.persistenciaSistema.ReportesDAO notificarReporte
+SEVERE: Hubo un error al cambiar estado de notificado: 
+]]></system-err>
+  </testcase>
+  <testcase name="deberiaLanzarExcepcionCuandoHayErrorDeRecuperacion" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.008"/>
+  <testcase name="deberiaLanzarExcepcionCuandoHayErrorDeInsercion" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.009">
+    <system-err><![CDATA[nov 03, 2024 5:56:17 P. M. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Opened connection [connectionId{localValue:1}] to localhost:27017
+nov 03, 2024 5:56:17 P. M. persistencia.persistenciaSistema.ReportesDAO insertarReporte
+WARNING: Ocurrió algo al insertar reportes: Error de conexión
+]]></system-err>
+  </testcase>
+  <testcase name="deberiaInsertarReporteExitosamente" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.019">
+    <system-err><![CDATA[nov 03, 2024 5:56:17 P. M. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[7, 0, 12]}, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=7113500}
+]]></system-err>
+  </testcase>
+  <testcase name="deberiaLanzarExcepcionCuandoHayErrorDeModificacion" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.003">
+    <system-err><![CDATA[nov 03, 2024 5:56:17 P. M. persistencia.persistenciaSistema.ReportesDAO modificarReporte
+SEVERE: No se pudo modificar el reporte
+]]></system-err>
+  </testcase>
+  <testcase name="deberiaRecuperarTodosLosReportes" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.006"/>
+  <testcase name="deberiaModificarReporteExitosamente" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.007">
+    <failure message="Unexpected exception thrown: java.lang.NullPointerException: Cannot invoke &quot;com.mongodb.client.FindIterable.first()&quot; because the return value of &quot;com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)&quot; is null" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.NullPointerException: Cannot invoke "com.mongodb.client.FindIterable.first()" because the return value of "com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)" is null
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:84)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:53)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:36)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3168)
+	at persistencia.persistenciaSistema.ReportesDAOTest.deberiaModificarReporteExitosamente(ReportesDAOTest.java:122)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.mongodb.client.FindIterable.first()" because the return value of "com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)" is null
+	at persistencia.persistenciaSistema.ReportesDAO.modificarReporte(ReportesDAO.java:88)
+	at persistencia.persistenciaSistema.ReportesDAOTest.lambda$deberiaModificarReporteExitosamente$4(ReportesDAOTest.java:123)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
+	... 6 more
+]]></failure>
+  </testcase>
+  <testcase name="deberiaRetornarNullCuandoReporteNoExiste" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.007"/>
+  <testcase name="deberiaValidarReporteExistente" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.005">
+    <failure message="Unexpected exception thrown: java.lang.NullPointerException: Cannot invoke &quot;com.mongodb.client.FindIterable.first()&quot; because the return value of &quot;com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)&quot; is null" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Unexpected exception thrown: java.lang.NullPointerException: Cannot invoke "com.mongodb.client.FindIterable.first()" because the return value of "com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)" is null
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:84)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:53)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:36)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3168)
+	at persistencia.persistenciaSistema.ReportesDAOTest.deberiaValidarReporteExistente(ReportesDAOTest.java:86)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: java.lang.NullPointerException: Cannot invoke "com.mongodb.client.FindIterable.first()" because the return value of "com.mongodb.client.MongoCollection.find(org.bson.conversions.Bson)" is null
+	at persistencia.persistenciaSistema.ReportesDAO.validarReporte(ReportesDAO.java:63)
+	at persistencia.persistenciaSistema.ReportesDAOTest.lambda$deberiaValidarReporteExistente$2(ReportesDAOTest.java:87)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
+	... 6 more
+]]></failure>
+  </testcase>
+  <testcase name="deberiaLanzarExcepcionCuandoHayErrorDeRecuperacionPorAlumno" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.003"/>
+  <testcase name="deberiaNotificarReporteExitosamente" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.017">
+    <failure message="&#10;Argument(s) are different! Wanted:&#10;coleccion.updateOne(&#10;    Filter{fieldName=&apos;_id&apos;, value=67281bb1a646934670c64910},&#10;    Update{fieldName=&apos;notificado&apos;, operator=&apos;$set&apos;, value=true}&#10;);&#10;-&gt; at persistencia.persistenciaSistema.ReportesDAOTest.deberiaNotificarReporteExitosamente(ReportesDAOTest.java:157)&#10;Actual invocations have different arguments at positions [0, 1]:&#10;coleccion.updateOne(&#10;    Filter{fieldName=&apos;_id&apos;, value=67281bb1a646934670c64910},&#10;    Update{fieldName=&apos;notificado&apos;, operator=&apos;$set&apos;, value=true}&#10;);&#10;-&gt; at persistencia.persistenciaSistema.ReportesDAO.notificarReporte(ReportesDAO.java:94)&#10;" type="Argument(s) are different! Wanted"><![CDATA[Argument(s) are different! Wanted:
+coleccion.updateOne(
+    Filter{fieldName='_id', value=67281bb1a646934670c64910},
+    Update{fieldName='notificado', operator='$set', value=true}
+);
+-> at persistencia.persistenciaSistema.ReportesDAOTest.deberiaNotificarReporteExitosamente(ReportesDAOTest.java:157)
+Actual invocations have different arguments at positions [0, 1]:
+coleccion.updateOne(
+    Filter{fieldName='_id', value=67281bb1a646934670c64910},
+    Update{fieldName='notificado', operator='$set', value=true}
+);
+-> at persistencia.persistenciaSistema.ReportesDAO.notificarReporte(ReportesDAO.java:94)
+
+	at persistencia.persistenciaSistema.ReportesDAOTest.deberiaNotificarReporteExitosamente(ReportesDAOTest.java:157)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+]]></failure>
+  </testcase>
+  <testcase name="deberiaRecuperarReportesPorAlumno" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.003">
+    <failure message="Unexpected exception thrown: persistencia.excepciones.PersistenciaException: Hubo un error al recuperar reportes" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: Unexpected exception thrown: persistencia.excepciones.PersistenciaException: Hubo un error al recuperar reportes
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertDoesNotThrow.createAssertionFailedError(AssertDoesNotThrow.java:84)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:53)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:36)
+	at org.junit.jupiter.api.Assertions.assertDoesNotThrow(Assertions.java:3168)
+	at persistencia.persistenciaSistema.ReportesDAOTest.deberiaRecuperarReportesPorAlumno(ReportesDAOTest.java:221)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+Caused by: persistencia.excepciones.PersistenciaException: Hubo un error al recuperar reportes
+	at persistencia.persistenciaSistema.ReportesDAO.recuperarReportesAlumno(ReportesDAO.java:117)
+	at persistencia.persistenciaSistema.ReportesDAOTest.lambda$deberiaRecuperarReportesPorAlumno$10(ReportesDAOTest.java:222)
+	at org.junit.jupiter.api.AssertDoesNotThrow.assertDoesNotThrow(AssertDoesNotThrow.java:49)
+	... 6 more
+]]></failure>
+  </testcase>
+  <testcase name="deberiaCompletarOperacionEnTiempoEsperado" classname="persistencia.persistenciaSistema.ReportesDAOTest" time="0.011"/>
+</testsuite>
