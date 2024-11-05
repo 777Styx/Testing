@@ -304,5 +304,8 @@ public class IAlumnoDAOTest {
         // Assert
         assertTrue(alumno.getUrlFoto().matches("^(http|https)://.*\\.(jpg|jpeg|png|gif)$"));
     }
+    
+    
+
 
 }

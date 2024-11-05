@@ -214,4 +214,16 @@ class IReportesDAOTest {
         // Act & Assert
         assertThrows(PersistenciaException.class, () -> reportesDAO.modificarReporte(null));
     }
+    
+    @Test
+    void testValidarReporte_NullReporte_ThrowsException() throws PersistenciaException {
+        
+        // Arrange
+        doThrow(PersistenciaException.class).when(reportesDAO).validarReporte(null);
+
+        // Act & Assert
+        assertThrows(PersistenciaException.class, () -> reportesDAO.validarReporte(null));
+        
+    }
+
 }
