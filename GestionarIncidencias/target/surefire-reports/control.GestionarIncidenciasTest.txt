@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: negocios.bo.IIncidenciasBOTest
+Test set: control.GestionarIncidenciasTest
 -------------------------------------------------------------------------------
-Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.862 s -- in negocios.bo.IIncidenciasBOTest
+Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.875 s -- in control.GestionarIncidenciasTest
