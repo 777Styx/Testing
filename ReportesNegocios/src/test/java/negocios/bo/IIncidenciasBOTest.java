@@ -211,6 +211,7 @@ class IIncidenciasBOTest {
     
     @Test
     void testRecuperarReportes_AlumnoNoExiste_ReturnsEmptyList() throws NegociosException {
+        
         // Arrange
         when(incidenciasBO.recuperarReportesAlumno("NO_CURP")).thenReturn(new ArrayList<>());
 
@@ -220,5 +221,87 @@ class IIncidenciasBOTest {
         // Assert
         assertTrue(resultado.isEmpty());
         verify(incidenciasBO, times(1)).recuperarReportesAlumno("NO_CURP");
+        
     }
+
+    @Test
+    void testCrearReporte_DuplicateReport_ThrowsException() throws NegociosException {
+        
+        // Arrange
+        doThrow(NegociosException.class).when(incidenciasBO).crearReporte(reporte);
+
+        // Act & Assert
+        assertThrows(NegociosException.class, () -> incidenciasBO.crearReporte(reporte));
+        verify(incidenciasBO, times(1)).crearReporte(reporte);
+        
+    }
+
+    @Test
+    void testRecuperarAlumnosPorGrado_GradoInexistente_ReturnsEmptyList() throws NegociosException {
+        
+        // Arrange
+        when(incidenciasBO.recuperarAlumnosPorGrado("10Z")).thenReturn(new ArrayList<>());
+
+        // Act
+        List<AlumnoDTO> resultado = incidenciasBO.recuperarAlumnosPorGrado("10Z");
+
+        // Assert
+        assertTrue(resultado.isEmpty());
+        verify(incidenciasBO, times(1)).recuperarAlumnosPorGrado("10Z");
+        
+    }
+
+    @Test
+    void testNotificarReporte_ConnectionFailure_ThrowsException() throws NegociosException {
+        
+        // Arrange
+        doThrow(NegociosException.class).when(incidenciasBO).notificarReporte(reporte);
+
+        // Act & Assert
+        assertThrows(NegociosException.class, () -> incidenciasBO.notificarReporte(reporte));
+        verify(incidenciasBO, times(1)).notificarReporte(reporte);
+        
+    }
+
+    @Test
+    void testConvertirReporteAReporteExpediente_EmptyList_ReturnsEmptyList() throws NegociosException {
+        
+        // Arrange
+        List<ReporteDTO> reportes = new ArrayList<>();
+        when(incidenciasBO.convertirReporteAReporteExpediente(reportes)).thenReturn(new ArrayList<>());
+
+        // Act
+        List<ReporteExpedienteDTO> resultado = incidenciasBO.convertirReporteAReporteExpediente(reportes);
+
+        // Assert
+        assertTrue(resultado.isEmpty());
+        verify(incidenciasBO, times(1)).convertirReporteAReporteExpediente(reportes);
+        
+    }
+
+    @Test
+    void testRecuperarReportes_LargeDataSet_Performance() throws NegociosException {
+        
+        // Arrange
+        List<ReporteDTO> reportes = new ArrayList<>();
+        for (int i = 0; i < 10000; i++) {
+            
+            reportes.add(new ReporteDTO("ID" + i, alumno, docente, null, "Descripcion " + i, "Motivo", new Date(), false, false));
+            
+        }
+        when(incidenciasBO.recuperarReportes()).thenReturn(reportes);
+
+        // Act
+        long startTime = System.currentTimeMillis();
+        List<ReporteDTO> resultado = incidenciasBO.recuperarReportes();
+        long endTime = System.currentTimeMillis();
+
+        // Assert
+        assertEquals(reportes, resultado);
+        assertTrue((endTime - startTime) < 200, "El método debe ejecutarse en menos de 200 ms");
+        verify(incidenciasBO, times(1)).recuperarReportes();
+        
+    }
+
+
 }
