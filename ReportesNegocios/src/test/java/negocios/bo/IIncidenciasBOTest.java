@@ -46,6 +46,12 @@ class IIncidenciasBOTest {
     }
 
     // Pruebas funcionales
+    /**
+     * Prueba que el método crearReporte inserta un reporte de manera exitosa
+     * con una entrada válida. Verifica que el método se llame una vez.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testCrearReporte_ValidInput_CreatesReportSuccessfully() throws NegociosException {
         // Arrange
@@ -58,6 +64,13 @@ class IIncidenciasBOTest {
         verify(incidenciasBO, times(1)).crearReporte(reporte);
     }
 
+    /**
+     * Prueba que el método crearReporte lanza una excepción NegociosException
+     * cuando se intenta crear un reporte inválido. Verifica que se arroje la
+     * excepción esperada.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testCrearReporte_ReportInvalido_ThrowsException() throws NegociosException {
         // Arrange
@@ -68,6 +81,13 @@ class IIncidenciasBOTest {
         assertThrows(NegociosException.class, () -> incidenciasBO.crearReporte(reporteInvalido));
     }
 
+    /**
+     * Prueba que el método validarReporte devuelve el mismo reporte al validar
+     * una entrada válida. Verifica que el reporte validado sea igual al
+     * original.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testValidarReporte_ValidReport_ReturnsValidatedReport() throws NegociosException {
         // Arrange
@@ -81,6 +101,12 @@ class IIncidenciasBOTest {
         verify(incidenciasBO, times(1)).validarReporte(reporte);
     }
 
+    /**
+     * Prueba que el método notificarReporte retorna verdadero al notificar un
+     * reporte válido. Verifica que la notificación se realice correctamente.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testNotificarReporte_ValidReport_ReturnsTrue() throws NegociosException {
         // Arrange
@@ -94,6 +120,12 @@ class IIncidenciasBOTest {
         verify(incidenciasBO, times(1)).notificarReporte(reporte);
     }
 
+    /**
+     * Prueba que el método recuperarReportes devuelve una lista de reportes sin
+     * parámetros. Verifica que se retorne la lista de reportes esperada.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testRecuperarReportes_NoParameters_ReturnsListOfReports() throws NegociosException {
         // Arrange
@@ -109,6 +141,12 @@ class IIncidenciasBOTest {
         verify(incidenciasBO, times(1)).recuperarReportes();
     }
 
+    /**
+     * Prueba que el método insertDatosSimulados inserta datos de simulación sin
+     * lanzar excepciones. Verifica que el método sea llamado exitosamente.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testInsertDatosSimulados_NoParameters_InsertsMockData() throws NegociosException {
         // Arrange
@@ -122,6 +160,12 @@ class IIncidenciasBOTest {
     }
 
     // Pruebas no funcionales
+    /**
+     * Prueba que el método recuperarAlumnosPorGrado tiene un rendimiento
+     * adecuado. Verifica que el método se ejecute en menos de 100 ms.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testRecuperarAlumnosPorGrado_Performance_ReturnsQuickly() throws NegociosException {
         // Arrange
@@ -139,6 +183,12 @@ class IIncidenciasBOTest {
         assertTrue(endTime - startTime < 100, "El método debe ejecutarse en menos de 100 ms");
     }
 
+    /**
+     * Prueba que el método notificarReporte lanza una excepción cuando se pasa
+     * un reporte nulo. Verifica que se arroje la excepción esperada.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testNotificarReporte_NullReport_ThrowsException() throws NegociosException {
         // Arrange
@@ -148,8 +198,14 @@ class IIncidenciasBOTest {
         assertThrows(NegociosException.class, () -> incidenciasBO.notificarReporte(null));
     }
 
-    
     // Pruebas estructurales
+    /**
+     * Prueba que recuperarAlumnosPorGradoYGrupo devuelve los resultados
+     * esperados con entradas válidas. Verifica que el método retorne los
+     * alumnos esperados.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testRecuperarAlumnosPorGradoYGrupo_ValidInput_ReturnsExpectedResults() throws NegociosException {
         // Arrange
@@ -165,6 +221,13 @@ class IIncidenciasBOTest {
         verify(incidenciasBO, times(1)).recuperarAlumnosPorGradoYGrupo("3", "A");
     }
 
+    /**
+     * Prueba que el método convertirReporteAReporteExpediente convierte
+     * correctamente una lista de reportes a expedientes. Verifica que se
+     * devuelva la lista de expedientes esperada.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testConvertirReporteAReporteExpediente_ValidReportList_ReturnsExpectedExpedienteList() throws NegociosException {
         // Arrange
@@ -181,6 +244,12 @@ class IIncidenciasBOTest {
         verify(incidenciasBO, times(1)).convertirReporteAReporteExpediente(reportes);
     }
 
+    /**
+     * Prueba que el método recuperarReportesAlumno devuelve una lista vacía
+     * cuando se utiliza un CURP no válido.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testRecuperarReportesAlumno_InvalidCurp_ReturnsEmptyList() throws NegociosException {
         // Arrange
@@ -194,6 +263,12 @@ class IIncidenciasBOTest {
         verify(incidenciasBO, times(1)).recuperarReportesAlumno("INVALID_CURP");
     }
 
+    /**
+     * Prueba que recuperarReportesAlumno retorna una lista de reportes cuando
+     * se usa un CURP válido.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testRecuperarReportesAlumno_ValidCurp_ReturnsReports() throws NegociosException {
         // Arrange
@@ -208,10 +283,16 @@ class IIncidenciasBOTest {
         assertEquals(reportes, resultado);
         verify(incidenciasBO, times(1)).recuperarReportesAlumno("CURP123");
     }
-    
+
+    /**
+     * Prueba que recuperarReportesAlumno retorna una lista vacía cuando el
+     * alumno no existe.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testRecuperarReportes_AlumnoNoExiste_ReturnsEmptyList() throws NegociosException {
-        
+
         // Arrange
         when(incidenciasBO.recuperarReportesAlumno("NO_CURP")).thenReturn(new ArrayList<>());
 
@@ -221,24 +302,36 @@ class IIncidenciasBOTest {
         // Assert
         assertTrue(resultado.isEmpty());
         verify(incidenciasBO, times(1)).recuperarReportesAlumno("NO_CURP");
-        
+
     }
 
+    /**
+     * Prueba que crearReporte lanza una excepción al intentar crear un reporte
+     * duplicado.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testCrearReporte_DuplicateReport_ThrowsException() throws NegociosException {
-        
+
         // Arrange
         doThrow(NegociosException.class).when(incidenciasBO).crearReporte(reporte);
 
         // Act & Assert
         assertThrows(NegociosException.class, () -> incidenciasBO.crearReporte(reporte));
         verify(incidenciasBO, times(1)).crearReporte(reporte);
-        
+
     }
 
+    /**
+     * Prueba que recuperarAlumnosPorGrado devuelve una lista vacía cuando se
+     * especifica un grado inexistente.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testRecuperarAlumnosPorGrado_GradoInexistente_ReturnsEmptyList() throws NegociosException {
-        
+
         // Arrange
         when(incidenciasBO.recuperarAlumnosPorGrado("10Z")).thenReturn(new ArrayList<>());
 
@@ -248,24 +341,36 @@ class IIncidenciasBOTest {
         // Assert
         assertTrue(resultado.isEmpty());
         verify(incidenciasBO, times(1)).recuperarAlumnosPorGrado("10Z");
-        
+
     }
 
+    /**
+     * Prueba que notificarReporte lanza una excepción en caso de una falla de
+     * conexión.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testNotificarReporte_ConnectionFailure_ThrowsException() throws NegociosException {
-        
+
         // Arrange
         doThrow(NegociosException.class).when(incidenciasBO).notificarReporte(reporte);
 
         // Act & Assert
         assertThrows(NegociosException.class, () -> incidenciasBO.notificarReporte(reporte));
         verify(incidenciasBO, times(1)).notificarReporte(reporte);
-        
+
     }
 
+    /**
+     * Prueba que convertirReporteAReporteExpediente devuelve una lista vacía al
+     * convertir una lista de reportes vacía.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testConvertirReporteAReporteExpediente_EmptyList_ReturnsEmptyList() throws NegociosException {
-        
+
         // Arrange
         List<ReporteDTO> reportes = new ArrayList<>();
         when(incidenciasBO.convertirReporteAReporteExpediente(reportes)).thenReturn(new ArrayList<>());
@@ -276,18 +381,24 @@ class IIncidenciasBOTest {
         // Assert
         assertTrue(resultado.isEmpty());
         verify(incidenciasBO, times(1)).convertirReporteAReporteExpediente(reportes);
-        
+
     }
 
+    /**
+     * Prueba de rendimiento que asegura que recuperarReportes maneja un
+     * conjunto grande de datos en menos de 200 ms.
+     * 
+     * @throws NegociosException si ocurre un error durante la prueba.
+     */
     @Test
     void testRecuperarReportes_LargeDataSet_Performance() throws NegociosException {
-        
+
         // Arrange
         List<ReporteDTO> reportes = new ArrayList<>();
         for (int i = 0; i < 10000; i++) {
-            
+
             reportes.add(new ReporteDTO("ID" + i, alumno, docente, null, "Descripcion " + i, "Motivo", new Date(), false, false));
-            
+
         }
         when(incidenciasBO.recuperarReportes()).thenReturn(reportes);
 
@@ -300,8 +411,7 @@ class IIncidenciasBOTest {
         assertEquals(reportes, resultado);
         assertTrue((endTime - startTime) < 200, "El método debe ejecutarse en menos de 200 ms");
         verify(incidenciasBO, times(1)).recuperarReportes();
-        
-    }
 
+    }
 
 }

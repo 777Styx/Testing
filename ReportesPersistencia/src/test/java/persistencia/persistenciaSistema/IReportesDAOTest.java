@@ -60,8 +60,16 @@ class IReportesDAOTest {
         reportesDAO = Mockito.mock(IReportesDAO.class);
         reporte = new ReporteEntity();
     }
+    
+    //Pruebas Funcionales
 
-    // Pruebas funcionales
+    /**
+     * Verifica que el método `insertarReporte` inserte correctamente un reporte válido.
+     * Utiliza un mock para simular la inserción y asegura que el reporte retornado
+     * sea el mismo que se pasó como parámetro.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testInsertarReporte_ValidReporte_InsertsSuccessfully() throws PersistenciaException {
         // Arrange
@@ -75,6 +83,12 @@ class IReportesDAOTest {
         verify(reportesDAO, times(1)).insertarReporte(reporte);
     }
 
+    /**
+     * Verifica que el método `validarReporte` retorne correctamente el reporte validado.
+     * Se asegura de que el reporte devuelto coincida con el reporte de entrada.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testValidarReporte_ValidReporte_ReturnsValidatedReport() throws PersistenciaException {
         // Arrange
@@ -88,6 +102,12 @@ class IReportesDAOTest {
         verify(reportesDAO, times(1)).validarReporte(reporte);
     }
 
+    /**
+     * Verifica que el método `modificarReporte` actualice el reporte correctamente.
+     * Compara el reporte devuelto con el reporte proporcionado.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testModificarReporte_ValidReporte_UpdatesSuccessfully() throws PersistenciaException {
         // Arrange
@@ -101,6 +121,11 @@ class IReportesDAOTest {
         verify(reportesDAO, times(1)).modificarReporte(reporte);
     }
 
+    /**
+     * Verifica que el método `notificarReporte` notifique correctamente el reporte y retorne true.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testNotificarReporte_ValidReporte_ReturnsTrue() throws PersistenciaException {
         // Arrange
@@ -114,6 +139,12 @@ class IReportesDAOTest {
         verify(reportesDAO, times(1)).notificarReporte(reporte);
     }
 
+    /**
+     * Verifica que el método `recuperarReportes` retorne una lista de reportes correctamente.
+     * La lista devuelta debe coincidir con la lista simulada de reportes.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testRecuperarReportes_NoParameters_ReturnsListOfReports() throws PersistenciaException {
         // Arrange
@@ -129,6 +160,12 @@ class IReportesDAOTest {
         verify(reportesDAO, times(1)).recuperarReportes();
     }
 
+    /**
+     * Verifica que el método `insertarReportesSimulados` se llame sin errores para insertar datos simulados.
+     * La prueba asegura que el método se ejecute correctamente sin retornos.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testInsertarReportesSimulados_NoParameters_InsertsMockData() throws PersistenciaException {
         // Arrange
@@ -141,7 +178,14 @@ class IReportesDAOTest {
         verify(reportesDAO, times(1)).insertarReportesSimulados();
     }
 
-    // Pruebas no funcionales
+    //Pruebas no Funcionales
+    
+    /**
+     * Verifica que el método `recuperarReportes` se ejecute dentro de un tiempo límite (100 ms).
+     * Esta es una prueba de rendimiento que evalúa la eficiencia del método.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testRecuperarReportes_Performance_ReturnsQuickly() throws PersistenciaException {
         // Arrange
@@ -159,6 +203,12 @@ class IReportesDAOTest {
         assertTrue(endTime - startTime < 100, "El método debe ejecutarse en menos de 100 ms");
     }
 
+    /**
+     * Verifica que el método `notificarReporte` arroje una excepción cuando se le pasa un reporte nulo.
+     * Evalúa la robustez del método ante entradas inválidas.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testNotificarReporte_NullReporte_ThrowsException() throws PersistenciaException {
         // Arrange
@@ -169,6 +219,13 @@ class IReportesDAOTest {
     }
 
     // Pruebas estructurales
+    
+    /**
+     * Verifica que `recuperarReportesAlumno` retorne correctamente una lista de reportes
+     * al usar un CURP válido.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testRecuperarReportesAlumno_ValidCurp_ReturnsExpectedResults() throws PersistenciaException {
         // Arrange
@@ -184,6 +241,11 @@ class IReportesDAOTest {
         verify(reportesDAO, times(1)).recuperarReportesAlumno("CURP123");
     }
 
+    /**
+     * Verifica que `recuperarReportesAlumno` retorne una lista vacía cuando se usa un CURP inválido.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testRecuperarReportesAlumno_InvalidCurp_ReturnsEmptyList() throws PersistenciaException {
         // Arrange
@@ -197,6 +259,12 @@ class IReportesDAOTest {
         verify(reportesDAO, times(1)).recuperarReportesAlumno("INVALID_CURP");
     }
 
+    /**
+     * Verifica que el método `insertarReporte` arroje una excepción cuando el reporte es nulo.
+     * Evalúa el manejo de errores del método ante entradas inválidas.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testInsertarReporte_NullReporte_ThrowsException() throws PersistenciaException {
         // Arrange
@@ -206,6 +274,12 @@ class IReportesDAOTest {
         assertThrows(PersistenciaException.class, () -> reportesDAO.insertarReporte(null));
     }
 
+    /**
+     * Verifica que el método `modificarReporte` arroje una excepción cuando el reporte es nulo.
+     * Evalúa el manejo de errores del método ante entradas inválidas.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testModificarReporte_NullReporte_ThrowsException() throws PersistenciaException {
         // Arrange
@@ -215,6 +289,12 @@ class IReportesDAOTest {
         assertThrows(PersistenciaException.class, () -> reportesDAO.modificarReporte(null));
     }
     
+    /**
+     * Verifica que el método `validarReporte` arroje una excepción cuando el reporte es nulo.
+     * Evalúa el manejo de errores del método ante entradas inválidas.
+     * 
+     * @throws PersistenciaException si ocurre un error de persistencia durante la prueba.
+     */
     @Test
     void testValidarReporte_NullReporte_ThrowsException() throws PersistenciaException {
         
