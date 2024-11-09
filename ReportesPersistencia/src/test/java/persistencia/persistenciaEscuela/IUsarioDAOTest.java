@@ -43,6 +43,7 @@ class IUsuarioDAOTest {
         docenteInvalido.setCurp("CURP_INVALIDA");
     }
 
+    //FUNCIONALES
     /**
      * Simula insercion de datos sin errores
      *
@@ -55,44 +56,6 @@ class IUsuarioDAOTest {
 
         // Act & Assert
         assertDoesNotThrow(() -> usuarioDAO.insertarDocentesSimulados());
-        verify(usuarioDAO, times(1)).insertarDocentesSimulados();
-    }
-
-    /**
-     * simula insertarDocentesSimulados cuando ocurre un error en la base de
-     * datos al intentar insertar un docentes
-     *
-     * @throws PersistenciaException
-     */
-    @Test
-    void insertarDocentesSimulados_ErrorBaseDatos_LanzarPersistenciaException() throws PersistenciaException {
-        // Arrange
-        doThrow(new PersistenciaException("Error al insertar docentes"))
-                .when(usuarioDAO).insertarDocentesSimulados();
-
-        // Act & Assert
-        PersistenciaException exception = assertThrows(PersistenciaException.class,
-                () -> usuarioDAO.insertarDocentesSimulados());
-        assertEquals("Error al insertar docentes", exception.getMessage());
-        verify(usuarioDAO, times(1)).insertarDocentesSimulados();
-    }
-
-    /**
-     * valida que insertarDocentesSimulados maneja correctamente una excepcion
-     * de tipo PersistenciaException cuando ocurre un error en la base de datos
-     *
-     * @throws PersistenciaException
-     */
-    @Test
-    void insertarDocentesSimulados_ErrorConexion_LanzarPersistenciaException() throws PersistenciaException {
-        // Arrange
-        doThrow(new PersistenciaException("Error de conexión a la base de datos"))
-                .when(usuarioDAO).insertarDocentesSimulados();
-
-        // Act & Assert
-        PersistenciaException exception = assertThrows(PersistenciaException.class,
-                () -> usuarioDAO.insertarDocentesSimulados());
-        assertEquals("Error de conexión a la base de datos", exception.getMessage());
         verify(usuarioDAO, times(1)).insertarDocentesSimulados();
     }
 
@@ -150,25 +113,6 @@ class IUsuarioDAOTest {
                 () -> usuarioDAO.obtenerDocente(null));
         assertEquals("El docente no puede ser null", exception.getMessage());
         verify(usuarioDAO, times(1)).obtenerDocente(null);
-    }
-
-    /**
-     * valida que se lance una excepción de tipo cuando ocurre un error en la
-     * base de datos al intentar obtener un docente válido.
-     *
-     * @throws PersistenciaException
-     */
-    @Test
-    void obtenerDocente_ErrorBaseDatos_LanzarPersistenciaException() throws PersistenciaException {
-        // Arrange
-        when(usuarioDAO.obtenerDocente(any(UsuarioEntity.class)))
-                .thenThrow(new PersistenciaException("Error en la base de datos"));
-
-        // Act & Assert
-        PersistenciaException exception = assertThrows(PersistenciaException.class,
-                () -> usuarioDAO.obtenerDocente(docenteValido));
-        assertEquals("Error en la base de datos", exception.getMessage());
-        verify(usuarioDAO, times(1)).obtenerDocente(any(UsuarioEntity.class));
     }
 
     /**
@@ -265,26 +209,6 @@ class IUsuarioDAOTest {
         PersistenciaException exception = assertThrows(PersistenciaException.class,
                 () -> usuarioDAO.obtenerDocentePorCurp(docenteCurpInvalida));
         assertEquals("Formato de CURP inválido", exception.getMessage());
-        verify(usuarioDAO, times(1)).obtenerDocentePorCurp(any(UsuarioEntity.class));
-    }
-
-    /**
-     * Verifica que el método lanza una excepción de tipo PersistenciaException
-     * cuando ocurre un error en la base de datos al intentar obtener un docente
-     * por su CURP.
-     *
-     * @throws PersistenciaException
-     */
-    @Test
-    void obtenerDocentePorCurp_ErrorBaseDatos_LanzarPersistenciaException() throws PersistenciaException {
-        // Arrange
-        when(usuarioDAO.obtenerDocentePorCurp(any(UsuarioEntity.class)))
-                .thenThrow(new PersistenciaException("Error en la base de datos"));
-
-        // Act & Assert
-        PersistenciaException exception = assertThrows(PersistenciaException.class,
-                () -> usuarioDAO.obtenerDocentePorCurp(docenteValido));
-        assertEquals("Error en la base de datos", exception.getMessage());
         verify(usuarioDAO, times(1)).obtenerDocentePorCurp(any(UsuarioEntity.class));
     }
 
@@ -421,5 +345,83 @@ class IUsuarioDAOTest {
                 () -> usuarioDAO.insertarDocentesSimulados());
         assertEquals("Operación cancelada por el usuario", exception.getMessage());
         verify(usuarioDAO, times(1)).insertarDocentesSimulados();
+    }
+
+    //NO FUNCIONALES
+    /**
+     * simula insertarDocentesSimulados cuando ocurre un error en la base de
+     * datos al intentar insertar un docentes
+     *
+     * @throws PersistenciaException
+     */
+    @Test
+    void insertarDocentesSimulados_ErrorBaseDatos_LanzarPersistenciaException() throws PersistenciaException {
+        // Arrange
+        doThrow(new PersistenciaException("Error al insertar docentes"))
+                .when(usuarioDAO).insertarDocentesSimulados();
+
+        // Act & Assert
+        PersistenciaException exception = assertThrows(PersistenciaException.class,
+                () -> usuarioDAO.insertarDocentesSimulados());
+        assertEquals("Error al insertar docentes", exception.getMessage());
+        verify(usuarioDAO, times(1)).insertarDocentesSimulados();
+    }
+
+    /**
+     * valida que insertarDocentesSimulados maneja correctamente una excepcion
+     * de tipo PersistenciaException cuando ocurre un error en la base de datos
+     *
+     * @throws PersistenciaException
+     */
+    @Test
+    void insertarDocentesSimulados_ErrorConexion_LanzarPersistenciaException() throws PersistenciaException {
+        // Arrange
+        doThrow(new PersistenciaException("Error de conexión a la base de datos"))
+                .when(usuarioDAO).insertarDocentesSimulados();
+
+        // Act & Assert
+        PersistenciaException exception = assertThrows(PersistenciaException.class,
+                () -> usuarioDAO.insertarDocentesSimulados());
+        assertEquals("Error de conexión a la base de datos", exception.getMessage());
+        verify(usuarioDAO, times(1)).insertarDocentesSimulados();
+    }
+
+    /**
+     * valida que se lance una excepción de tipo cuando ocurre un error en la
+     * base de datos al intentar obtener un docente válido.
+     *
+     * @throws PersistenciaException
+     */
+    @Test
+    void obtenerDocente_ErrorBaseDatos_LanzarPersistenciaException() throws PersistenciaException {
+        // Arrange
+        when(usuarioDAO.obtenerDocente(any(UsuarioEntity.class)))
+                .thenThrow(new PersistenciaException("Error en la base de datos"));
+
+        // Act & Assert
+        PersistenciaException exception = assertThrows(PersistenciaException.class,
+                () -> usuarioDAO.obtenerDocente(docenteValido));
+        assertEquals("Error en la base de datos", exception.getMessage());
+        verify(usuarioDAO, times(1)).obtenerDocente(any(UsuarioEntity.class));
+    }
+
+    /**
+     * Verifica que el método lanza una excepción de tipo PersistenciaException
+     * cuando ocurre un error en la base de datos al intentar obtener un docente
+     * por su CURP.
+     *
+     * @throws PersistenciaException
+     */
+    @Test
+    void obtenerDocentePorCurp_ErrorBaseDatos_LanzarPersistenciaException() throws PersistenciaException {
+        // Arrange
+        when(usuarioDAO.obtenerDocentePorCurp(any(UsuarioEntity.class)))
+                .thenThrow(new PersistenciaException("Error en la base de datos"));
+
+        // Act & Assert
+        PersistenciaException exception = assertThrows(PersistenciaException.class,
+                () -> usuarioDAO.obtenerDocentePorCurp(docenteValido));
+        assertEquals("Error en la base de datos", exception.getMessage());
+        verify(usuarioDAO, times(1)).obtenerDocentePorCurp(any(UsuarioEntity.class));
     }
 }
