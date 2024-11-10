@@ -131,8 +131,6 @@ public class IFachadaSistemaMensajeriaTest {
         // Assert
         assertTrue(resultado, "El mensaje debería enviarse correctamente");
 
-        // Aquí podrías agregar verificaciones adicionales si fuera necesario
-        // Por ejemplo, verificar que el mensaje contiene ciertos valores.
     }
 
     /**
