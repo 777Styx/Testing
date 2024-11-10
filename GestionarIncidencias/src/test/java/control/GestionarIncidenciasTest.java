@@ -34,7 +34,8 @@ public class GestionarIncidenciasTest {
     ReporteDTO reporteNuevo;
     AlumnoDTO alumno;
     UsuarioDTO docente;
-
+    private IIncidenciasBO incidenciasBO;
+    
     public GestionarIncidenciasTest() {
 
         // Arrange - setup common objects and mocks
@@ -46,11 +47,11 @@ public class GestionarIncidenciasTest {
 
     }
 
-    private IIncidenciasBO incidenciasBO;
+    
 
     /**
      * Prueba que verifica la creación de un reporte válido.
-     *
+     * Tipo: METODO FUNCIONAL
      * @throws NegociosException si ocurre un error al crear el reporte
      */
     @Test
@@ -66,25 +67,9 @@ public class GestionarIncidenciasTest {
     }
 
     /**
-     * Prueba que verifica que se lanza una excepción al crear un reporte
-     * inválido.
-     *
-     * @throws NegociosException si el reporte no es válido
-     */
-    @Test
-    public void TestcrearReporte_InputInvalido_Failed() throws NegociosException {
-        // Arrange
-        ReporteDTO reporteInvalido = new ReporteDTO("ID2", null, null, null, "Descripcion", "Motivo", new Date(), false, false);
-        doThrow(NegociosException.class).when(incidenciasBO).crearReporte(reporteInvalido);
-
-        // Act & Assert
-        assertThrows(NegociosException.class, () -> incidenciasBO.crearReporte(reporteInvalido));
-    }
-
-    /**
      * Prueba que verifica que la notificación de un reporte válido se realiza
      * correctamente.
-     *
+     * Tipo: METODO FUNCIONAL
      * @throws SubsistemaException si ocurre un error en el subsistema
      * @throws NegociosException si ocurre un error en el negocio
      */
@@ -103,7 +88,7 @@ public class GestionarIncidenciasTest {
 
     /**
      * Prueba que verifica la recuperación de una lista de reportes.
-     *
+     * Tipo: METODO FUNCIONAL
      * @throws SubsistemaException si ocurre un error en el subsistema
      * @throws NegociosException si ocurre un error en el negocio
      */
@@ -124,7 +109,7 @@ public class GestionarIncidenciasTest {
 
     /**
      * Prueba que verifica la inserción de datos simulados sin errores.
-     *
+     * Tipo: METODO FUNCIONAL
      * @throws SubsistemaException si ocurre un error en el subsistema
      * @throws NegociosException si ocurre un error en el negocio
      */
@@ -142,7 +127,7 @@ public class GestionarIncidenciasTest {
 
     /**
      * Prueba que verifica la recuperación de alumnos por grado.
-     *
+     * Tipo: METODO FUNCIONAL
      * @throws SubsistemaException si ocurre un error en el subsistema
      * @throws NegociosException si ocurre un error en el negocio
      */
@@ -164,7 +149,7 @@ public class GestionarIncidenciasTest {
 
     /**
      * Prueba que verifica la recuperación de alumnos por grupo.
-     *
+     * Tipo: METODO FUNCIONAL 
      * @throws SubsistemaException si ocurre un error en el subsistema
      * @throws NegociosException si ocurre un error en el negocio
      */
@@ -186,7 +171,7 @@ public class GestionarIncidenciasTest {
 
     /**
      * Prueba que verifica la recuperación de alumnos.
-     *
+     * Tipo: METODO FUNCIONAL
      * @throws SubsistemaException si ocurre un error en el subsistema
      * @throws NegociosException si ocurre un error en el negocio
      */
@@ -208,7 +193,7 @@ public class GestionarIncidenciasTest {
 
     /**
      * Prueba que verifica la validación de un reporte con un input válido.
-     *
+     * Tipo: METODO FUNCIONAL
      * @throws NegociosException si ocurre un error en el negocio
      */
     @Test
@@ -224,11 +209,51 @@ public class GestionarIncidenciasTest {
         verify(incidenciasBO, times(1)).validarReporte(reporteNuevo);
 
     }
+    
+    /**
+     * Prueba que verifica la recuperación de alumnos por grado y grupo con un
+     * input válido.
+     * Tipo: METODO FUNCIONAL
+     * @throws SubsistemaException si ocurre un error en el subsistema
+     * @throws NegociosException si ocurre un error en el negocio
+     */
+    @Test
+    public void TestRecuperarAlumnosPorGradoYGrupo_InputValido_Successfully() throws SubsistemaException, NegociosException {
+        // Arrange
+        String grado = "6AVP";
+        String grupo = "A";
+        List<AlumnoDTO> alumnosSimulados = List.of(alumno);
+        when(incidenciasBO.recuperarAlumnosPorGradoYGrupo(grado, grupo)).thenReturn(alumnosSimulados);
+
+        // Act
+        List<AlumnoDTO> resultado = incidenciasBO.recuperarAlumnosPorGradoYGrupo(grado, grupo);
+
+        // Assert
+        assertNotNull(resultado);
+        assertEquals(alumnosSimulados, resultado);
+        verify(incidenciasBO, times(1)).recuperarAlumnosPorGradoYGrupo(grado, grupo);
+    }
+    
+    /**
+     * Prueba que verifica que se lanza una excepción al crear un reporte
+     * inválido.
+     * Tipo: METODO NO FUNCIONAL
+     * @throws NegociosException si el reporte no es válido
+     */
+    @Test
+    public void TestcrearReporte_InputInvalido_Failed() throws NegociosException {
+        // Arrange
+        ReporteDTO reporteInvalido = new ReporteDTO("ID2", null, null, null, "Descripcion", "Motivo", new Date(), false, false);
+        doThrow(NegociosException.class).when(incidenciasBO).crearReporte(reporteInvalido);
+
+        // Act & Assert
+        assertThrows(NegociosException.class, () -> incidenciasBO.crearReporte(reporteInvalido));
+    }
 
     /**
      * Prueba que verifica el comportamiento cuando el reporte es notificado con
      * un input inválido.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws NegociosException si ocurre un error en el negocio
      */
     @Test
@@ -244,7 +269,7 @@ public class GestionarIncidenciasTest {
     /**
      * Prueba que verifica la recuperación de reportes cuando no existen
      * reportes.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws SubsistemaException si ocurre un error en el subsistema
      * @throws NegociosException si ocurre un error en el negocio
      */
@@ -265,7 +290,7 @@ public class GestionarIncidenciasTest {
     /**
      * Prueba que verifica el comportamiento al insertar datos simulados con un
      * error.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws NegociosException si ocurre un error en el negocio
      */
     @Test
@@ -281,7 +306,7 @@ public class GestionarIncidenciasTest {
     /**
      * Prueba que verifica la recuperación de alumnos por grado con un input
      * inválido.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws NegociosException si ocurre un error en el negocio
      */
     @Test
@@ -298,7 +323,7 @@ public class GestionarIncidenciasTest {
     /**
      * Prueba que verifica la recuperación de alumnos por grupo con un input
      * inválido.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws NegociosException si ocurre un error en el negocio
      */
     @Test
@@ -313,33 +338,9 @@ public class GestionarIncidenciasTest {
     }
 
     /**
-     * Prueba que verifica la recuperación de alumnos por grado y grupo con un
-     * input válido.
-     *
-     * @throws SubsistemaException si ocurre un error en el subsistema
-     * @throws NegociosException si ocurre un error en el negocio
-     */
-    @Test
-    public void TestRecuperarAlumnosPorGradoYGrupo_InputValido_Successfully() throws SubsistemaException, NegociosException {
-        // Arrange
-        String grado = "6AVP";
-        String grupo = "A";
-        List<AlumnoDTO> alumnosSimulados = List.of(alumno);
-        when(incidenciasBO.recuperarAlumnosPorGradoYGrupo(grado, grupo)).thenReturn(alumnosSimulados);
-
-        // Act
-        List<AlumnoDTO> resultado = incidenciasBO.recuperarAlumnosPorGradoYGrupo(grado, grupo);
-
-        // Assert
-        assertNotNull(resultado);
-        assertEquals(alumnosSimulados, resultado);
-        verify(incidenciasBO, times(1)).recuperarAlumnosPorGradoYGrupo(grado, grupo);
-    }
-
-    /**
      * Prueba que verifica la recuperación de reportes de un alumno cuando no
      * existen reportes.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws SubsistemaException si ocurre un error en el subsistema
      * @throws NegociosException si ocurre un error en el negocio
      */
@@ -361,7 +362,7 @@ public class GestionarIncidenciasTest {
     /**
      * Prueba que verifica la conversión de reportes a expediente cuando el
      * input es null.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws NegociosException si ocurre un error en el negocio
      */
     @Test
@@ -377,7 +378,7 @@ public class GestionarIncidenciasTest {
     /**
      * Prueba que verifica la creación de un reporte vacío y lanza una
      * excepción.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws NegociosException si ocurre un error en el negocio
      */
     @Test
@@ -393,7 +394,7 @@ public class GestionarIncidenciasTest {
 
     /**
      * Prueba que verifica la validación de un reporte cuando el input es null.
-     *
+     * Tipo: METODO NO FUNCIONAL
      * @throws NegociosException si ocurre un error en el negocio
      */
     @Test
