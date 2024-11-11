@@ -49,7 +49,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que el método crearReporte inserta un reporte de manera exitosa
      * con una entrada válida. Verifica que el método se llame una vez.
-     * 
+     * TIPO: FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -68,7 +68,7 @@ class IIncidenciasBOTest {
      * Prueba que el método crearReporte lanza una excepción NegociosException
      * cuando se intenta crear un reporte inválido. Verifica que se arroje la
      * excepción esperada.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -85,7 +85,7 @@ class IIncidenciasBOTest {
      * Prueba que el método validarReporte devuelve el mismo reporte al validar
      * una entrada válida. Verifica que el reporte validado sea igual al
      * original.
-     * 
+     * TIPO: FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -104,7 +104,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que el método notificarReporte retorna verdadero al notificar un
      * reporte válido. Verifica que la notificación se realice correctamente.
-     * 
+     * TIPO: FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -123,7 +123,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que el método recuperarReportes devuelve una lista de reportes sin
      * parámetros. Verifica que se retorne la lista de reportes esperada.
-     * 
+     * TIPO: FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -144,7 +144,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que el método insertDatosSimulados inserta datos de simulación sin
      * lanzar excepciones. Verifica que el método sea llamado exitosamente.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -163,7 +163,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que el método recuperarAlumnosPorGrado tiene un rendimiento
      * adecuado. Verifica que el método se ejecute en menos de 100 ms.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -186,7 +186,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que el método notificarReporte lanza una excepción cuando se pasa
      * un reporte nulo. Verifica que se arroje la excepción esperada.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -203,7 +203,7 @@ class IIncidenciasBOTest {
      * Prueba que recuperarAlumnosPorGradoYGrupo devuelve los resultados
      * esperados con entradas válidas. Verifica que el método retorne los
      * alumnos esperados.
-     * 
+     * TIPO: FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -225,7 +225,7 @@ class IIncidenciasBOTest {
      * Prueba que el método convertirReporteAReporteExpediente convierte
      * correctamente una lista de reportes a expedientes. Verifica que se
      * devuelva la lista de expedientes esperada.
-     * 
+     * TIPO: FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -247,7 +247,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que el método recuperarReportesAlumno devuelve una lista vacía
      * cuando se utiliza un CURP no válido.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -266,7 +266,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que recuperarReportesAlumno retorna una lista de reportes cuando
      * se usa un CURP válido.
-     * 
+     * TIPO: FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -287,7 +287,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que recuperarReportesAlumno retorna una lista vacía cuando el
      * alumno no existe.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -308,7 +308,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que crearReporte lanza una excepción al intentar crear un reporte
      * duplicado.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -326,7 +326,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que recuperarAlumnosPorGrado devuelve una lista vacía cuando se
      * especifica un grado inexistente.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -347,7 +347,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que notificarReporte lanza una excepción en caso de una falla de
      * conexión.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -365,7 +365,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba que convertirReporteAReporteExpediente devuelve una lista vacía al
      * convertir una lista de reportes vacía.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
@@ -387,7 +387,7 @@ class IIncidenciasBOTest {
     /**
      * Prueba de rendimiento que asegura que recuperarReportes maneja un
      * conjunto grande de datos en menos de 200 ms.
-     * 
+     * TIPO: NO FUNCIONAL
      * @throws NegociosException si ocurre un error durante la prueba.
      */
     @Test
