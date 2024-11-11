@@ -29,13 +29,13 @@ import persistencia.persistenciaEscuela.UsuarioDAO;
  *
  * @author PC
  */
-public class GestionarIncidenciasTest {
+public class GestionarIncidenciasTestUnitarias {
 
     ReporteDTO reporteNuevo;
     AlumnoDTO alumno;
     UsuarioDTO docente;
 
-    public GestionarIncidenciasTest() {
+    public GestionarIncidenciasTestUnitarias() {
 
         // Arrange - setup common objects and mocks
         incidenciasBO = Mockito.mock(IIncidenciasBO.class);
